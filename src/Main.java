@@ -14,9 +14,9 @@ public class Main {
 
         //variables
         int i;
-        int numeroRandom1;
+        int numeroRandom1 = 0;
         String difficult;
-        String range;
+        String range = "";
         int attempsNumber;
 
 
@@ -24,27 +24,29 @@ public class Main {
         difficult = challenge.next();
 
 
-        switch (difficult) {
-            case "Medium":
-            case "2":
-                numeroRandom1 = randomNumber.nextInt(50) + 1;
-                System.out.println("Numbers 1-50");
-                range = "1-50";
-                break;
-
-            case "Hard":
-            case "3":
-                numeroRandom1 = randomNumber.nextInt(100) + 1;
-                System.out.println("Numbers 1-100");
-                range = "1-100";
-                break;
-
-            default:
-                numeroRandom1 = randomNumber.nextInt(10) + 1;
-                System.out.println("Numbers 1-10");
-                range = "1-10";
-                break;
+        while (!difficult.equals("Easy") && !difficult.equals("1") && !difficult.equals("Medium") && !difficult.equals("2") && !difficult.equals("Hard") && !difficult.equals("3")){
+            System.out.println("Incorrect value. Choose the difficult: 1. Easy, 2. Medium, 3. Hard");
+            difficult = challenge.next();
         }
+
+            switch (difficult) {
+                case "Easy", "1" -> {
+                    numeroRandom1 = randomNumber.nextInt(10) + 1;
+                    System.out.println("Numbers 1-10");
+                    range = "1-10";
+                }
+
+                case "Medium", "2" -> {
+                    numeroRandom1 = randomNumber.nextInt(50) + 1;
+                    System.out.println("Numbers 1-50");
+                    range = "1-50";
+                }
+                case "Hard", "3" -> {
+                    numeroRandom1 = randomNumber.nextInt(100) + 1;
+                    System.out.println("Numbers 1-100");
+                    range = "1-100";
+                }
+            }
 
         System.out.println("Enter the number of attempts you want ");
         attempsNumber = tries.nextInt();
@@ -63,7 +65,7 @@ public class Main {
                 System.out.println("the number is lower than " + answer);
                 System.out.println(attempsNumber - 1 + " remaining attempts");
 
-            } else if (numeroRandom1 > answer) {
+            } else {
                 System.out.println("the number is higher than " + answer);
                 System.out.println(attempsNumber - 1 + " remaining attempts");
 
